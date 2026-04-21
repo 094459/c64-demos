@@ -1,0 +1,36 @@
+10 print chr$(147): rem clear screen
+20 poke 53280,0: poke 53281,0: rem black border and background
+
+30 rem initialize sprite data
+40 for i = 0 to 62: read a: poke 832+i,a: next i
+
+50 rem sprite data for AWS logo (simplified)
+60 data 0,0,0,12,66,112,18,66,136,51,66,128,33,90,112,63
+70 data 90,8,33,102,136,33,66,112,0,0,0,0,0,60,0,0
+80 data 4,96,0,36,56,0,228,15,131,128,0,254,0,0,0,0
+90 data 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4
+100 rem set up sprites
+110 for s = 0 to 3
+120   poke 2040+s,13: rem sprite data from block 13 (832/64)
+130   poke 53287+s,s+2: rem sprite colors (red, cyan, purple, green)
+140   x(s) = int(rnd(1)*320): rem random x position
+150   y(s) = int(rnd(1)*200)+30: rem random y position
+160   dx(s) = (rnd(1)>0.5)*2-1: rem random x direction
+170   dy(s) = (rnd(1)>0.5)*2-1: rem random y direction
+180 next s
+
+190 poke 53269,15: rem enable first 4 sprites
+
+200 rem main loop
+210 for s = 0 to 3
+220   x(s) = x(s) + dx(s)
+230   y(s) = y(s) + dy(s)
+240   if x(s) < 24 or x(s) > 320 then dx(s) = -dx(s)
+250   if y(s) < 50 or y(s) > 229 then dy(s) = -dy(s)
+260   poke 53248+s*2,x(s) and 255: rem x coordinate (low byte)
+270   poke 53264,peek(53264) and (255-2^s) or (-(x(s)>255))*2^s
+280   poke 53249+s*2,y(s): rem y coordinate
+290 next s
+
+300 for d = 1 to 10: next d: rem delay for smooth movement
+310 goto 200: rem repeat the movement

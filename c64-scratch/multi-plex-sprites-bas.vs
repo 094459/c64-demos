@@ -1,0 +1,10 @@
+al C:907 .MoveSpriteDown
+al C:852 .SetupSprites
+al C:919 .MoveSpriteUp
+al C:840 .sprite
+al C:900 .IRQ
+al C:928 .NextSprite
+al C:8cb .SetupInterrupt
+al C:849 .Main
+al C:8f8 .speed
+al C:8f0 .direction
