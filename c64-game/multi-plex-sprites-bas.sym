@@ -1,0 +1,10 @@
+.label IRQ=$900
+.label speed=$8f8
+.label SetupSprites=$852
+.label sprite=$840
+.label direction=$8f0
+.label MoveSpriteDown=$907
+.label MoveSpriteUp=$919
+.label SetupInterrupt=$8cb
+.label NextSprite=$928
+.label Main=$849

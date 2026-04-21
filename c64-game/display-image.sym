@@ -1,0 +1,11 @@
+.label DisplayImage=$89f {
+  .label bitmap_loop=$8a1
+  .label color_loop=$8d6
+  .label colram_loop=$8f3
+}
+.label start=$80e
+.label clear=$836
+.label ColorData=$290f
+.label loop=$89c
+.label ImageData=$90f
+.label ColorRamData=$2d0f
